@@ -9,9 +9,7 @@ export default function App() {
     <div className="d-flex flex-column vh-100">
       {/* Sidebar component for navigation */}
       <Sidebar />
-      {/* Countries component to display countries */}
-      <Countries />
-      {/* Holidays component to display holidays */}
+      <Countries title="List of Countries" />  {/* Passing the title prop */}
       <Holidays />
     </div>
   );
