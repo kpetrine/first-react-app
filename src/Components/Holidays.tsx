@@ -59,7 +59,7 @@ export default function Holidays() {
         },
         {
             id: 6,
-            name: 'Australia Day', // Corrected spelling
+            name: 'Australia Day', 
             countries: ['AUD'],
             quarter: 'Q1',
             dates: ['01/26/2025'],
