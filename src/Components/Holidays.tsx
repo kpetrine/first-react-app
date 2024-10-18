@@ -1,8 +1,18 @@
+import React, { useState } from 'react';
 
+type HolidaysProps = {
+    id: number;
+    name: string;
+    countries: string[];
+    quarter: string;
+    dates: string[];
+    onDelete: (id: number) => void
+}
 
-export default function Holidays() {
+export default function Holidays({ onDelete, ...props }: HolidaysProps) {
+    const [holidays, setHolidays] = useState([
     // Define the holidays array 
-    const holidays = [
+    
         {
             id: 1,
             name: 'Mothers Day',
@@ -19,7 +29,7 @@ export default function Holidays() {
         {
             id: 2,
             name: 'Mothering Sunday',
-            countries: ['GBR', 'AUD'],
+            countries: ['GBR', 'AUS'],
             quarter: 'Q1',
             dates: [
                 '03/30/2025',
@@ -32,7 +42,7 @@ export default function Holidays() {
         {
             id: 3,
             name: 'Black Friday',
-            countries: ['USA', 'GBR', 'CAN', 'AUD'],
+            countries: ['USA', 'GBR', 'CAN', 'AUS'],
             quarter: 'Q4',
             dates: [
                 '11/29/2024',
@@ -60,26 +70,42 @@ export default function Holidays() {
         {
             id: 6,
             name: 'Australia Day', 
-            countries: ['AUD'],
+            countries: ['AUS'],
             quarter: 'Q1',
             dates: ['01/26/2025'],
         },
-    ];
+    ]);
 
-    return (
-        <div>
-            <h1>Holidays</h1>
-            <ul>
-                {holidays.map(holiday => (
-                    <li key={holiday.id}>
-                        <strong>{holiday.name}</strong> (Quarter: {holiday.quarter})
-                        <ul>
-                            <li>Countries: {holiday.countries.join(', ')}</li>
-                            <li>Dates: {holiday.dates.join(', ')}</li>
-                        </ul>
-                    </li>
-                ))}
-            </ul>
-        </div>
-    );
+  // Other holidays...
+
+
+function handleDelete(e: React.MouseEvent, id: number) {
+    if (onDelete) {
+        onDelete(id); // Call the parent delete function
+    }
+    // Update the state to remove the holiday
+    setHolidays(holidays.filter(holiday => holiday.id !== id));
+}
+
+return (
+    <div>
+        <h1>Holidays</h1>
+        <ul>
+            {holidays.map(holiday => (
+                <li key={holiday.id}>
+                    <strong>{holiday.name}</strong> (Quarter: {holiday.quarter})
+                    <ul>
+                        <li>Countries: {holiday.countries.join(', ')}</li>
+                        <li>Dates: {holiday.dates.join(', ')}</li>
+                        <li>
+                            <button onClick={(e) => handleDelete(e, holiday.id)}>
+                                Delete
+                            </button>
+                        </li>
+                    </ul>
+                </li>
+            ))}
+        </ul>
+    </div>
+);
 }
