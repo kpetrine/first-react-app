@@ -1,7 +1,5 @@
-
 import AddHolidayButton from "./AddHolidayButton";
-import { Holiday } from '../App'; // Adjust the import path as necessary
-
+import { Holiday } from '../App'; 
 
 type SidebarProps = {
   holidays: Holiday[];
@@ -14,10 +12,12 @@ export default function Sidebar({ holidays, onAddHoliday }: SidebarProps) {
     const newHoliday: Holiday = {
       id: holidays.length + 1, // Simple ID generation
       name: 'New Holiday',
-      countries: ['USA'],
       quarter: 'Q1',
       dates: ['01/01/2025'],
+      starred: false,
     };
+
+    
     onAddHoliday(newHoliday);
     console.log("Add holiday clicked", newHoliday);
   };
@@ -32,12 +32,7 @@ export default function Sidebar({ holidays, onAddHoliday }: SidebarProps) {
               Dashboard
             </a>
           </li>
-          <li className="nav-item">
-            <a className="nav-link control-add-user" aria-current="page" href="#">
-              <i className="bi bi-country-add"></i>
-              Add Country
-            </a>
-          </li>
+        
           <li>
             <AddHolidayButton onAddHoliday={handleAddHoliday} />
           </li>
@@ -46,3 +41,4 @@ export default function Sidebar({ holidays, onAddHoliday }: SidebarProps) {
     </nav>
   );
 }
+

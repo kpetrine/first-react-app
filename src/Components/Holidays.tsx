@@ -8,7 +8,7 @@ type HolidaysProps = {
 
 export default function Holidays({ holidays, onDelete }: HolidaysProps) {
     function handleDelete(id: number) {
-        let updatedHolidays = holidays.filter(holiday => holiday.id !== id);
+       
         if (onDelete) {
             onDelete(id);
         }
@@ -22,7 +22,7 @@ export default function Holidays({ holidays, onDelete }: HolidaysProps) {
                     <li key={holiday.id}>
                         <strong>{holiday.name}</strong> (Quarter: {holiday.quarter})
                         <ul>
-                            <li>Countries: {holiday.countries.join(', ')}</li>
+
                             <li>Dates: {holiday.dates.join(', ')}</li>
                             <li>
                                 <button onClick={() => handleDelete(holiday.id)}>
