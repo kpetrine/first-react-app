@@ -2,7 +2,7 @@ import { useState } from 'react';
 import Modal from './Components/modal';
 import Sidebar from "./Components/Sidebar";
 import Title from "./Components/Title";
-import SearchForm from './Components/AddHolidayForm'; 
+
 import './App.css';
 
 // Define the Holiday type
