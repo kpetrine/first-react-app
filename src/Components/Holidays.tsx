@@ -20,10 +20,10 @@ export default function Holidays({ holidays, onDelete }: HolidaysProps) {
             <ul>
                 {holidays.map(holiday => (
                     <li key={holiday.id}>
-                        <strong>{holiday.name}</strong> (Quarter: {holiday.quarter})
+                        <strong>{holiday.name}</strong> ({holiday.localName})
                         <ul>
 
-                            <li>Dates: {holiday.dates.join(', ')}</li>
+                            <li>Dates: {holiday.date}</li>
                             <li>
                                 <button onClick={() => handleDelete(holiday.id)}>
                                     Delete

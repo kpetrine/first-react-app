@@ -11,9 +11,10 @@ export default function Sidebar({ holidays, onAddHoliday }: SidebarProps) {
     // Example logic for adding a holiday
     const newHoliday: Holiday = {
       id: holidays.length + 1, // Simple ID generation
-      name: 'New Holiday',
-      quarter: 'Q1',
-      dates: ['01/01/2025'],
+      date: '2025-05-11',
+      localName: 'Mothers Day',
+      name: 'Mothers Day',
+      countryCode: 'US',
       starred: false,
     };
 

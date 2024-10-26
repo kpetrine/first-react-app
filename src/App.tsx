@@ -1,15 +1,16 @@
 import { useState } from 'react';
 import Sidebar from "./Components/Sidebar";
 import Title from "./Components/Title";
+import SearchForm from './Components/AddHolidayForm'; 
 import './App.css';
 
 // Define the Holiday type
 export type Holiday = {
   id: number;
+  date: string;
+  localName:  string;
   name: string;
-  quarter: string;
-  sales?: number | null;
-  dates: string[];
+countryCode: string;
   starred: boolean;
 };
 
@@ -17,46 +18,99 @@ export type Holiday = {
 export default function App() {
   const [holidays, setHolidays] = useState<Holiday[]>([
     {
-      id: 1,
-      name: 'Mothers Day',
-      quarter: 'Q2',
-      sales: null,
-      dates: ['05/11/2025'],
-          starred: false,
-  },
+    id: 1,
+    date: "2025-01-01",
+    localName: 'New Years Day',
+    name: 'New Years Day',
+    countryCode: 'US',
+    starred: false,
+    },
+    
+    {
+    id: 2,
+    date: "2025-02-17",
+    localName: 'Washingtons Birthday',
+    name: 'Presidents Day',
+    countryCode: 'US',
+    starred: false,
+    },
 
-{
-  id: 2,
-  name: 'Mothers Day',
-  quarter: 'Q2',
-  sales: null,
-  dates: ['05/10/2026'],
-  starred: false,
-},
-{
-  id: 3,
-  name: 'Mothers Day',
-  quarter: 'Q2',
-  sales: null,
-  dates: ['05/09/2027'],
-  starred: false,
-},
-{
-  id: 4,
-  name: 'Mothers Day',
-  quarter: 'Q2',
-  sales: null,
-  dates: ['05/14/2028'],
-  starred: false,
-},
-{
-  id: 5,
-  name: 'Mothers Day',
-  quarter: 'Q2',
-  sales: null,
-  dates: ['05/13/2029'],
-  starred: false,
-},
+    {
+    id: 3,
+     date: "2025-05-26",
+    localName: 'Memorial Day',
+    name: 'Memorial Day',
+    countryCode: 'US',
+    starred: false,
+    },
+
+    {
+    id: 4,
+     date: "2025-07-04",
+    localName: 'Independence Day',
+    name: 'Independence Day',
+    countryCode: 'US',
+    starred: false,
+    },
+
+    {
+    id: 5,
+     date: "2025-09-01",
+    localName: 'Labour Day',
+    name: 'Labor Day',
+    countryCode: 'US',
+    starred: false,
+    },
+
+    {
+    id: 6,
+     date: "2025-10-13",
+    localName: 'Columbus Day',
+    name: 'Columbus Day',
+    countryCode: 'US',
+    starred: false,
+    },
+
+    {
+    id: 7,
+     date: "2025-10-13",
+    localName: 'Indigenous Peoples Day',
+    name: 'Indigenous Peoples Day',
+    countryCode: 'US',
+    starred: false,
+    },
+
+     {
+    id: 8,
+     date: "2025-11-11",
+    localName: 'Veterans Day',
+    name: 'Veterans Day',
+    countryCode: 'US',
+    starred: false,
+    },
+
+    
+  {
+    id: 9,
+     date: "2025-11-27",
+    localName: 'Thanksgiving Day',
+    name: 'Thanksgiving Day',
+    countryCode: 'US',
+    starred: false,
+    },   
+
+  
+    {
+    id: 10,
+    date: "2025-12-25",
+    localName: 'Christmas Day',
+    name: 'Christmas Day',
+    countryCode: 'US',
+    starred: false,
+    }, 
+
+
+
   
 ]
   );
@@ -85,31 +139,34 @@ const handleUpdateHoliday = (id: number, updatedHoliday: Partial<Holiday>) => {
 return (
     <div className="d-flex flex-column vh-100">
         <Title />
+        <SearchForm onSubmit={handleAddHoliday} /> {/* Add SearchForm here */}
         <div className="container mt-5">
             <div className="container-fluid">
                 <div className="d-flex">
-                    <Sidebar holidays={holidays} onAddHoliday={handleAddHoliday} />
+                <Sidebar holidays={holidays} onAddHoliday={handleAddHoliday} />
                     <div className="col-10 mt-5">
                         <table className="table table-striped table-dark">
                             <thead>
                                 <tr>
-                                    <th>Holiday</th>
-                                    <th>Sales Quarter</th>
                                     <th>Date</th>
+                                    <th>Holiday</th>
+                                    <th>Local Name</th>
+                                    <th>Country Code</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
                             <tbody className="holidays-list" id="tbody">
                                 {holidays.map((holiday) => (
                                     <tr key={holiday.id}>
+                                        <td>{holiday.date}</td>
                                         <td>{holiday.name}</td>
-                                        <td>{holiday.quarter}</td>
-                                        <td>{holiday.dates.join(", ")}</td>
+                                        <td>{holiday.localName}</td>
+                                        <td>{holiday.countryCode}</td>
                                         <td>
                                             <button onClick={() => toggleStarred(holiday.id)}>
                                                 {holiday.starred ? 'Unstar' : 'Star'}
                                             </button>
-                                            <button onClick={() => handleUpdateHoliday(holiday.id, { dates: ['new date here'] })}>
+                                            <button onClick={() => handleUpdateHoliday(holiday.id, { date: 'new date here' })}>
                                                 Update Dates
                                             </button>
                                             <button onClick={() => handleDeleteHoliday(holiday.id)}>
@@ -127,4 +184,3 @@ return (
     </div>
 );
 }
-
