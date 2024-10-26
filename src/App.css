@@ -45,3 +45,36 @@ body{
 .read-the-docs {
   color: #888;
 }
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 15px !important;
+  width: 300px;
+}
+
+.modal-width {
+  max-width: 700px;
+  background-color: white !important;
+  
+}
+
+.close-button {
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  float: right;
+}

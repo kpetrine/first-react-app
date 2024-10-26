@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import Modal from './Components/modal';
 import Sidebar from "./Components/Sidebar";
 import Title from "./Components/Title";
 import SearchForm from './Components/AddHolidayForm'; 
@@ -108,15 +109,13 @@ export default function App() {
     countryCode: 'US',
     starred: false,
     }, 
-
-
-
-  
+ 
 ]
   );
 
   const handleAddHoliday = (newHoliday: Holiday) => {
     setHolidays([...holidays, newHoliday]);
+    closeModal();
 };
 
 const handleDeleteHoliday = (id: number) => {
@@ -136,14 +135,22 @@ const handleUpdateHoliday = (id: number, updatedHoliday: Partial<Holiday>) => {
     ));
 };
 
+const [isModalOpen, setIsModalOpen] = useState(false);
+const openModal = () => setIsModalOpen(true);
+const closeModal = () => setIsModalOpen(false);
+
+
+
 return (
     <div className="d-flex flex-column vh-100">
         <Title />
-        <SearchForm onSubmit={handleAddHoliday} /> {/* Add SearchForm here */}
+        {/*<AddHolidayForm onSubmit={handleAddHoliday} />  */}
+        <Sidebar holidays={holidays} onAddHoliday={openModal} />
+<Modal isOpen={isModalOpen} onClose={closeModal} onSubmit={handleAddHoliday}/>
         <div className="container mt-5">
             <div className="container-fluid">
                 <div className="d-flex">
-                <Sidebar holidays={holidays} onAddHoliday={handleAddHoliday} />
+                {/* <Sidebar holidays={holidays} onAddHoliday={handleAddHoliday} /> */}
                     <div className="col-10 mt-5">
                         <table className="table table-striped table-dark">
                             <thead>
@@ -176,6 +183,7 @@ return (
                                     </tr>
                                 ))}
                             </tbody>
+                            
                         </table>
                     </div>
                 </div>
@@ -183,4 +191,5 @@ return (
         </div>
     </div>
 );
+
 }

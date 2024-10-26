@@ -11,6 +11,7 @@ export default function AddHolidayButton({ onAddHoliday }: AddHolidayButtonProps
 
 
     return (
+        
         <button
             type="button"
             onClick={onAddHoliday}

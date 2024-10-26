@@ -50,7 +50,7 @@ export default function AddHolidayForm({ onSubmit }: AddHolidayFormProps) {
                     onChange={handleChange} 
                 />
             </label>
-
+            
             <label>Enter the local name for the holiday:
                 <input 
                     type="text" 
