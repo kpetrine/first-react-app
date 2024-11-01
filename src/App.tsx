@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import Modal from './Components/Modal';
+import Modal from './Components/modal';
 import Sidebar from "./Components/Sidebar";
 import Title from "./Components/Title";
 
