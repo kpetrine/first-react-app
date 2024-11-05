@@ -1,5 +1,5 @@
 import AddHolidayButton from "./AddHolidayButton";
-import { Holiday } from '../App'; 
+import { Holiday } from '../pages/HomePage'; 
 
 type SidebarProps = {
   holidays: Holiday[];

@@ -2,10 +2,9 @@ import React from 'react';
 //import './Modal.css'; // Add styles for the modal
 import AddHolidayForm from './AddHolidayForm';
 import '../App.css'
-import { Holiday } from '../App';
+// import Holiday from '../pages/HomePage'; 
 
 interface ModalProps {
-   
     isOpen: boolean;
     onClose: () => void;
     onSubmit: (holiday: Holiday) => void;
