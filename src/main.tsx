@@ -1,14 +1,16 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
-import App from './App.tsx';
 import "bootstrap/dist/css/bootstrap.min.css";
 import './index.css';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Layout from './Components/Layout.tsx';
 import HomePage from './pages/HomePage.tsx';
-
 import Contact from './pages/Contact.tsx';
+import HolidayDetails from './pages/AddHoliday.tsx';
 
+
+// CSS for the overall App
+import "./App.css"
 
 
 const router = createBrowserRouter([
@@ -28,8 +30,8 @@ children: [
 
   },
   {
-    path: "/:holidayId",
-    element: <HolidayDetails/>
+    path: "/:AddHoliday",
+    element: <AddHoliday/>
 	  }
 ]
 }

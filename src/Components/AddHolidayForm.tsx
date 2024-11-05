@@ -8,7 +8,8 @@ interface AddHolidayFormProps {
         localName: string; 
         name: string; 
         countryCode: string; 
-        starred: boolean }) => void;
+        starred: boolean 
+    }) => void;
 }
 
 export default function AddHolidayForm({ onSubmit }: AddHolidayFormProps) {
@@ -20,23 +21,30 @@ export default function AddHolidayForm({ onSubmit }: AddHolidayFormProps) {
     };
 
     const [inputs, setInputs] = useState(initialInputs);
-    
 
-    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    // Handle change of form inputs
+    const handleChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const { name, value } = event.target;
         setInputs((values) => ({ ...values, [name]: value }));
     };
 
+    // Handle form submission
     const handleSubmit = (event: React.FormEvent) => {
         event.preventDefault();
-        if (onSubmit) {
+
+        // Only submit if all fields are filled
+        if (inputs.date && inputs.localName && inputs.name && inputs.countryCode) {
             const newHoliday = {
                 id: Date.now(), // Unique ID
                 ...inputs,
-                starred: false,
+                starred: false, // Default value for starred
             };
-            onSubmit(newHoliday); // Pass the new holiday data to the parent component
-            setInputs(initialInputs); // Reset the form
+
+            // Pass the new holiday to the parent component
+            onSubmit(newHoliday);
+
+            // Reset the form
+            setInputs(initialInputs);
         }
     };
 
@@ -81,3 +89,4 @@ export default function AddHolidayForm({ onSubmit }: AddHolidayFormProps) {
         </form>
     );
 }
+

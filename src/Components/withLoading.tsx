@@ -1,15 +1,15 @@
-tyope withLoadingPros = {
-    loading? : boolean,
-};
+type WithLoadingProps = {
+    loading?: boolean;
+  };
 
-export default function withLoading(Component: React.FunctionComponent) : any {
- return ({ ...props } ) => {
-    const [ loading, setLoading ] = useState<boolean>((props.loading !== undefinded) ? props.loading)
-    returne laoding ?
-    <div className="d-flex align-item-center m-3">
-        <strong className="text-info">Loading...</strong>
-        <div className="spinner-boarder sinner-border-sm text-info ms-auto" role="status"
+  return loading ? (
+    <div className="d-flex align-items-center m-3">
+      <strong className="text-info">Loading...</strong>
+      <div className="spinner-border spinner-border-sm text-info ms-auto" role="status">
+        <span className="visually-hidden">Loading...</span>
+      </div>
     </div>
-    : < Component { ...props }
-};
-}
+  ) : (
+    <Component {...props} />
+  );
+  
