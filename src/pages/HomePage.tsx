@@ -4,8 +4,8 @@ import Sidebar from './Components/Sidebar';
 import Title from './Components/Title';
 import Modal from './Components/Modal';
 import AddHolidayForm from './Components/AddHolidayForm'; // Import the AddHolidayForm
-import ContactForm from './Components/ContactForm.'; // Import Contact Form
-import { Holiday } from './App.css';
+import ContactForm from './Components/ContactForm'; // Fixed the import for ContactForm
+import './App.css'; // Assuming styles are in App.css
 
 // Define holiday type
 export type Holiday = {
@@ -20,36 +20,38 @@ export type Holiday = {
 function App() {
   const [holidays, setHolidays] = useState<Holiday[]>([]);
 
+  // Handle adding a new holiday
   const handleAddHoliday = (newHoliday: Holiday) => {
-    setHolidays([...holidays, newHoliday]);
+    setHolidays(prevHolidays => [...prevHolidays, newHoliday]);
     closeModal();
   };
 
+  // Handle deleting a holiday
   const handleDeleteHoliday = (id: number) => {
     setHolidays(holidays.filter(holiday => holiday.id !== id));
   };
 
+  // Toggle the 'starred' state of a holiday
   const toggleStarred = (id: number) => {
     setHolidays(holidays.map(holiday =>
       holiday.id === id ? { ...holiday, starred: !holiday.starred } : holiday
     ));
   };
 
+  // Handle updating a holiday
   const handleUpdateHoliday = (id: number, updatedHoliday: Partial<Holiday>) => {
     setHolidays(holidays.map(holiday =>
       holiday.id === id ? { ...holiday, ...updatedHoliday } : holiday
     ));
   };
 
+  // Modal state
   const [isModalOpen, setIsModalOpen] = useState(false);
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
 
-  const handleAddHoliday = (newHoliday: Holiday) => {
-    setHolidays(prevHolidays => [...prevHolidays, newHoliday]);
-};
+  console.log("Holidays state:", holidays);
 
-console.log("Holidays state:", holidays);
   return (
     <Router> {/* Wrap your whole app with Router */}
       <div className="d-flex flex-column vh-100">
@@ -109,8 +111,15 @@ console.log("Holidays state:", holidays);
             path="/add-holiday" 
             element={<AddHolidayForm onSubmit={handleAddHoliday} />} 
           />
+
+          {/* Contact Page Route */}
+          <Route 
+            path="/contact" 
+            element={<ContactForm />} 
+          />
         </Routes>
 
+        {/* Modal component */}
         <Modal isOpen={isModalOpen} onClose={closeModal} onSubmit={handleAddHoliday} />
       </div>
     </Router>
