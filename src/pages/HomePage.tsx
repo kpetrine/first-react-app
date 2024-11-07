@@ -1,21 +1,12 @@
 import { useState, useEffect } from "react";
-import { Routes, Route } from "react-router-dom"; // Don't import BrowserRouter here
 import Sidebar from "../Components/Sidebar";
 import Title from "../Components/Title";
 import Modal from "../Components/modal";
-import AddHolidayForm from "../Components/AddHolidayForm"; // Import the AddHolidayForm
-import ContactForm from "../Components/ContactForm";
 import Table from "../Components/Table";
+import { Holiday } from "../Components/types";
 
-// Define holiday type
-type Holiday = {
-  id: number;
-  date: string;
-  localName: string;
-  name: string;
-  countryCode: string;
-  starred: boolean;
-};
+
+
 type loading = Boolean;
 
 function App() {
@@ -77,26 +68,18 @@ function App() {
     <div className="app-container">
       <Title />
       <Sidebar holidays={holidays} onAddHoliday={openModal} />
-
-      {/* Routes for different pages */}
-      <Routes>
-        {/* Parent route */}
-        <Route
-          path="*"  // Match any path inside the component
-          element={
+ 
+       
             <div>
               <h1>Holiday List</h1>
               <Table
+              isLoading={isLoading}
                 holidays={holidays}
                 toggleStarred={toggleStarred}
                 handleUpdateHoliday={handleUpdateHoliday}
                 handleDeleteHoliday={handleDeleteHoliday}
               />
             </div>
-          }
-        />
-        <Route path="contact" element={<ContactForm />} />
-      </Routes>
 
       {/* Modal component */}
       <Modal isOpen={isModalOpen} onClose={closeModal} onSubmit={handleAddHoliday} />

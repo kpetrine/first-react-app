@@ -1,51 +1,93 @@
-#root {
+/* Global Variables for Colors and Fonts */
+:root {
+  --primary-bg-color: #121212;
+  --secondary-bg-color: #1a1a1a;
+  --sidebar-bg-color: #222;
+  --text-color-light: white;
+  --text-color-dark: #888;
+  --highlight-color: #646cff;
+  --highlight-hover-color: #61dafb;
+  --border-radius: 8px;
+  --font-family: Arial, sans-serif;
+}
+
+/* Body Styling */
+body {
+  color: var(--text-color-light);
+  background-color: black;
+  font-family: var(--font-family);
+  margin: 0;
+  padding: 0;
+}
+
+/* Main Container */
+.app-container {
   max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+  background-color: var(--primary-bg-color);
+  border-radius: var(--border-radius);
 }
 
-body{
-  color: white; 
-  background-color: black;
+/* About Page Styling */
+.about-content {
+  color: var(--text-color-light);
+  padding: 2rem;
+  background-color: var(--secondary-bg-color);
+  border-radius: var(--border-radius);
+  margin-top: 20px;
+  text-align: center;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.about-content h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  color: #f0f0f0;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.about-content p {
+  font-size: 1.2rem;
+  line-height: 1.6;
+  color: #d1d1d1;
+  margin: 1rem 0;
+  padding: 0 10px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+/* Sidebar Styling */
+.sidebar {
+  padding: 2rem;
+  background-color: var(--sidebar-bg-color);
+  color: var(--text-color-light);
+  margin-bottom: 2rem;
+  border-radius: var(--border-radius);
+  text-align: center;
 }
 
-.card {
-  padding: 2em;
+.sidebar h3 {
+  color: #f0f0f0;
+  margin-bottom: 1rem;
 }
 
-.read-the-docs {
-  color: #888;
+/* Sidebar Links */
+.sidebar a {
+  color: #d1d1d1;
+  text-decoration: none;
+  font-size: 1.1rem;
+  margin: 0.8rem 0;
+  padding: 8px 16px;
+  width: 100%;
+  border-radius: 4px;
+  transition: background-color 0.3s, color 0.3s;
 }
 
+.sidebar a:hover {
+  background-color: var(--highlight-color);
+  color: var(--text-color-light);
+  padding-left: 24px;
+}
+
+/* Modal Overlay */
 .modal-overlay {
   position: fixed;
   top: 0;
@@ -61,14 +103,13 @@ body{
 .modal-content {
   background-color: white;
   padding: 20px;
-  border-radius: 15px !important;
+  border-radius: 15px;
   width: 300px;
 }
 
 .modal-width {
   max-width: 700px;
-  background-color: white !important;
-  
+  background-color: white;
 }
 
 .close-button {
@@ -77,4 +118,78 @@ body{
   font-size: 20px;
   cursor: pointer;
   float: right;
+}
+
+/* Form Stlying */
+form {
+  font-family: Arial, sans-serif;
+  color: #333;
+  /* Dark text color for better readability */
+  margin: 10px;
+  padding: 10px;
+  background-color: #f8f8f8;
+  /* Light background color for the form */
+  border-radius: 20px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Logo Styling */
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+
+.logo:hover {
+  filter: drop-shadow(0 0 2em var(--highlight-color)aa);
+}
+
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em var(--highlight-hover-color)aa);
+}
+
+/* Keyframe Animations */
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+/* Adjusting font sizes for mobile */
+@media (max-width: 768px) {
+  .about-content h1 {
+    font-size: 2rem;
+  }
+
+  .about-content p {
+    font-size: 1rem;
+  }
+
+  .app-container {
+    padding: 1rem;
+  }
+
+  .sidebar {
+    padding: 1rem;
+    width: 100%;
+  }
+
+  .sidebar h3 {
+    font-size: 1.2rem;
+  }
+
+  .sidebar a {
+    font-size: 1rem;
+  }
 }

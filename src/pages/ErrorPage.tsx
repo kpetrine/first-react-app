@@ -1,10 +1,10 @@
-import { useRouteError } from "react-router-dom";
 
-type Props = {}
-export default function ErrorPage ({}: Props) {
-    const error: any = useRouteError ()
-    return (
-        <div className="text-danger">
-            { error.message || error.statusText }</div>
-    )
+
+
+export default function ErrorPage(){  
+ return (
+        <div>
+            <h1> 404 - Page Not Found</h1>
+        </div>
+ )
 }

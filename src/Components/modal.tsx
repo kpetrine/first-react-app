@@ -2,7 +2,7 @@ import React from 'react';
 //import './Modal.css'; // Add styles for the modal
 import AddHolidayForm from './AddHolidayForm';
 import '../App.css'
-// import Holiday from '../pages/HomePage'; 
+import { Holiday } from "../Components/types";
 
 interface ModalProps {
     isOpen: boolean;
@@ -21,7 +21,6 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, onSubmit}) => {
         <div className="modal-overlay" onClick={onClose}>
             <div className="modal-content modal-width" onClick={(e) => e.stopPropagation()}>
                 <AddHolidayForm onSubmit={onSubmit} />
-                <button onClick={onClose} className=" close-button">Only Submit Once</button>
             </div>
         </div>
     );

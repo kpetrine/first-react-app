@@ -8,7 +8,7 @@ const Form = () => {
     const [message, setMessage] = useState('');
     
      {/*Handle form sumbission */}
-    const handleSubmit = (e) => {
+    const handleSubmit = (e: React.FormEvent) => {
     
         e.preventDefault();
 

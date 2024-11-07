@@ -1,13 +1,25 @@
-import { NavLink, Outlet } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 export default function Layout() {
-    return (
-    <div>
-        <h2>Holiday Dates</h2>
-<NavLink to= "/">Home</NavLink>
-<NavLink to= "/holidays">Add Holidays</NavLink>
-<NavLink to= "/contact">Contact</NavLink>
-<Outlet/>
-</div>
-    )
+  return (
+    <div className="layout-container">
+      <aside className="sidebar">
+        <h3>Navigation</h3>
+        
+          <li>
+            <NavLink to="/">Home</NavLink>
+          </li>
+          <li>
+            <NavLink to="/about">About</NavLink>
+          </li>
+          <li>
+            <NavLink to="/contact">Contact</NavLink>
+          </li>
+       
+      </aside>
+
+      {/* Main content */}
+      <main className="content"></main>
+    </div>
+  );
 }

@@ -1,5 +1,13 @@
 import Holiday from '../pages/HomePage';
 
+type Holiday = {
+    id: number;
+    date: string;
+    localName: string;
+    name: string;
+    countryCode: string;
+    starred: boolean;
+  };
 
 type HolidaysProps = {
     holidays: Holiday[]; // Holiday array

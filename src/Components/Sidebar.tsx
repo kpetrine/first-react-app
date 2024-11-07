@@ -1,5 +1,5 @@
-import AddHolidayButton from './AddHolidayButton';
-import { Holiday } from "../pages/HomePage";
+import AddHolidayButton from "./AddHolidayButton";
+import { Holiday } from "../Components/types";
 
 type SidebarProps = {
   holidays: Holiday[]; // list of holidays passed from parent
@@ -11,14 +11,13 @@ export default function Sidebar({ holidays, onAddHoliday }: SidebarProps) {
     // Example logic for adding a holiday
     const newHoliday: Holiday = {
       id: holidays.length + 1, // Simple ID generation
-      date: '2025-05-11',
-      localName: 'Mothers Day',
-      name: 'Mothers Day',
-      countryCode: 'US',
+      date: "2025-05-11",
+      localName: "Mothers Day",
+      name: "Mothers Day",
+      countryCode: "US",
       starred: false,
     };
 
-    
     onAddHoliday(newHoliday);
     console.log("Add holiday clicked", newHoliday);
   };
@@ -33,7 +32,7 @@ export default function Sidebar({ holidays, onAddHoliday }: SidebarProps) {
               Dashboard
             </a>
           </li>
-        
+
           <li>
             <AddHolidayButton onAddHoliday={handleAddHoliday} />
           </li>
@@ -42,4 +41,3 @@ export default function Sidebar({ holidays, onAddHoliday }: SidebarProps) {
     </nav>
   );
 }
-
