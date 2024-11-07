@@ -7,6 +7,8 @@ import "./App.css";
 
 // Import your pages
 import HomePage from './pages/HomePage';
+import AboutPage from './pages/AboutPage'; // Import About page
+import ContactPage from './pages/ContactPage'; // Example ContactPage component
 
 // Rendering the root component
 createRoot(document.getElementById('root')!).render(
@@ -14,7 +16,7 @@ createRoot(document.getElementById('root')!).render(
     <BrowserRouter>
       <Routes>
         {/* Define routes here */}
-        <Route path="/" element={<HomePage />} /> {/* Home page route */}
+        <Route path="*" element={<HomePage />} /> {/* Home page route */}
         {/* Add more routes as needed */}
       </Routes>
     </BrowserRouter>
