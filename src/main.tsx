@@ -7,8 +7,8 @@ import "./App.css";
 
 // Import your pages
 import HomePage from './pages/HomePage';
-import AboutPage from './pages/AboutPage'; // Import About page
-import ContactPage from './pages/ContactPage'; // Example ContactPage component
+import AboutPage from './pages/AboutPage'; 
+import ContactPage from './pages/ContactPage'; 
 
 // Rendering the root component
 createRoot(document.getElementById('root')!).render(
