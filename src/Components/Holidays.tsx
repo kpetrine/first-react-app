@@ -1,16 +1,17 @@
-import { Holiday } from '../App';
+import Holiday from '../pages/HomePage';
 
 
 type HolidaysProps = {
-    holidays: Holiday[];
-    onDelete: (id: number) => void;
+    holidays: Holiday[]; // Holiday array
+    onDelete: (id: number) => void; // delete holiday function
 };
 
 export default function Holidays({ holidays, onDelete }: HolidaysProps) {
+    // delete holiday function
     function handleDelete(id: number) {
        
         if (onDelete) {
-            onDelete(id);
+            onDelete(id); // onDelete function passed as prop
         }
     }
 

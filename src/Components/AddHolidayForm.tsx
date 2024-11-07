@@ -1,4 +1,4 @@
-//- Build a form for the app that allows the user to either create items with specific data.
+//- Build a form for the app that allows the user to create items with specific data.
 import { useState } from 'react';
 
 // Define the prop types

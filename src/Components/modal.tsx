@@ -21,7 +21,7 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, onSubmit}) => {
         <div className="modal-overlay" onClick={onClose}>
             <div className="modal-content modal-width" onClick={(e) => e.stopPropagation()}>
                 <AddHolidayForm onSubmit={onSubmit} />
-                <button onClick={onClose} className=" close-button">X</button>
+                <button onClick={onClose} className=" close-button">Only Submit Once</button>
             </div>
         </div>
     );

@@ -1,9 +1,9 @@
-import AddHolidayButton from "./AddHolidayButton";
-import { Holiday } from '../pages/HomePage'; 
+import AddHolidayButton from './AddHolidayButton';
+import { Holiday } from "../pages/HomePage";
 
 type SidebarProps = {
-  holidays: Holiday[];
-  onAddHoliday: (holiday: Holiday) => void;
+  holidays: Holiday[]; // list of holidays passed from parent
+  onAddHoliday: (holiday: Holiday) => void; // callback funtion to add a holiday
 };
 
 export default function Sidebar({ holidays, onAddHoliday }: SidebarProps) {

@@ -1,12 +1,11 @@
 import { useState, useEffect } from "react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { Routes, Route } from "react-router-dom"; // Don't import BrowserRouter here
 import Sidebar from "../Components/Sidebar";
 import Title from "../Components/Title";
 import Modal from "../Components/modal";
 import AddHolidayForm from "../Components/AddHolidayForm"; // Import the AddHolidayForm
 import ContactForm from "../Components/ContactForm";
 import Table from "../Components/Table";
-
 
 // Define holiday type
 type Holiday = {
@@ -41,6 +40,7 @@ function App() {
       console.error(error);
     }
   };
+
   // Handle adding a new holiday
   const handleAddHoliday = (newHoliday: Holiday) => {
     setHolidays((prevHolidays) => [...prevHolidays, newHoliday]);
@@ -63,11 +63,10 @@ function App() {
   const handleUpdateHoliday = (id: number, updatedHoliday: Partial<Holiday>) => {
     setHolidays(holidays.map(holiday =>
       holiday.id === id ? { ...holiday, ...updatedHoliday } : holiday
-    )
-    );
+    ));
   };
 
-  // Modal state
+  // Modal open/close
   const [isModalOpen, setIsModalOpen] = useState(false);
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
@@ -75,37 +74,33 @@ function App() {
   console.log("Holidays state:", holidays);
 
   return (
-    <Router>
-      <div className="app-container">
-        <Title />
-        <Sidebar holidays={holidays} onAddHoliday={openModal} />
+    <div className="app-container">
+      <Title />
+      <Sidebar holidays={holidays} onAddHoliday={openModal} />
 
-        {/* Routes for different pages */}
-        <Routes>
-          <Route
-            path="/"
-            element={
-              <div>
-                <h1>Holiday List</h1>
-                <Table
-                  holidays={holidays}
-                  toggleStarred={toggleStarred}
-                  handleUpdateHoliday={handleUpdateHoliday}
-                  handleDeleteHoliday={handleDeleteHoliday}
-                />
-              </div>
-            }
-          />
-          <Route
-            path="/contact"
-            element={<ContactForm />}
-          />
-        </Routes>
+      {/* Routes for different pages */}
+      <Routes>
+        {/* Parent route */}
+        <Route
+          path="*"  // Match any path inside the component
+          element={
+            <div>
+              <h1>Holiday List</h1>
+              <Table
+                holidays={holidays}
+                toggleStarred={toggleStarred}
+                handleUpdateHoliday={handleUpdateHoliday}
+                handleDeleteHoliday={handleDeleteHoliday}
+              />
+            </div>
+          }
+        />
+        <Route path="contact" element={<ContactForm />} />
+      </Routes>
 
-        {/* Modal component */}
-        <Modal isOpen={isModalOpen} onClose={closeModal} onSubmit={handleAddHoliday} />
-      </div>
-    </Router>
+      {/* Modal component */}
+      <Modal isOpen={isModalOpen} onClose={closeModal} onSubmit={handleAddHoliday} />
+    </div>
   );
 }
 

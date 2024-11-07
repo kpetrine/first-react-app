@@ -1,20 +1,23 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
+import { BrowserRouter, Routes, Route } from 'react-router-dom'; // Import routing components
 import "bootstrap/dist/css/bootstrap.min.css";
 import './index.css';
-import { BrowserRouter } from 'react-router-dom';
-//import HolidayDetails from './pages/AddHoliday.tsx';
+import "./App.css";
 
+// Import your pages
+import HomePage from './pages/HomePage';
 
-// CSS for the overall App
-import "./App.css"
-import App from './App.tsx';
-
-
+// Rendering the root component
 createRoot(document.getElementById('root')!).render(
-  <BrowserRouter>
-    <StrictMode>
-      <App/>
-    </StrictMode>
-  </BrowserRouter>
-)
+  <StrictMode>
+    <BrowserRouter>
+      <Routes>
+        {/* Define routes here */}
+        <Route path="/" element={<HomePage />} /> {/* Home page route */}
+        {/* Add more routes as needed */}
+      </Routes>
+    </BrowserRouter>
+  </StrictMode>
+);
+
