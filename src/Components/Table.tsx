@@ -11,11 +11,14 @@ type Holiday = {
 // Define the Table component with props
 interface TableProps {
   holidays: Holiday[];
-  isLoading: Boolean; // Array of holidays to display
+  isLoading: boolean; // Array of holidays to display
   toggleStarred: (id: number) => void; // Function to toggle starred status
   handleUpdateHoliday: (id: number, updatedHoliday: Partial<Holiday>) => void; // Function to update holiday
   handleDeleteHoliday: (id: number) => void; // Function to delete holiday
 }
+
+// type newDate = boolean
+// type setNewDate = boolean
 
 const Table: React.FC<TableProps> = ({
   isLoading,
@@ -24,6 +27,37 @@ const Table: React.FC<TableProps> = ({
   handleUpdateHoliday,
   handleDeleteHoliday,
 }) => {
+
+  const [editingHolidayId, setEditingHolidayId] = useState<number | null>(null);
+  const [newDate, setNewDate] = useState<string>("");
+
+  // Handle the date change
+  const handleDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setNewDate(e.target.value);
+  };
+
+  // Handle to update a holiday's date
+  const handleUpdateClick = (id: number) => {
+    if (editingHolidayId === id) {
+      setEditingHolidayId(null); 
+    } else {
+      setEditingHolidayId(id); 
+      const holidayToUpdate = holidays.find((holiday) => holiday.id === id);
+      if (holidayToUpdate) {
+        setNewDate(holidayToUpdate.date); 
+      }
+    }
+  };
+
+  // Handle updating the date of a holiday
+  const handleSubmitUpdate = (id: number) => {
+    if (newDate) {
+      handleUpdateHoliday(id, { date: newDate });
+      setEditingHolidayId(null); 
+      setNewDate(""); 
+    }
+  };
+
   return (
     <div>
       {isLoading && <p>Loading Holidays...</p>}
@@ -49,13 +83,26 @@ const Table: React.FC<TableProps> = ({
                   <button onClick={() => toggleStarred(holiday.id)}>
                     {holiday.starred ? "Unstar" : "Star"}
                   </button>
-                  <button
-                    onClick={() =>
-                      handleUpdateHoliday(holiday.id, { date: "new date here" })
-                    }
-                  >
-                    Update Dates
+                  
+                  {/* Show date input only for the holiday being edited */}
+                  {editingHolidayId === holiday.id && (
+                    <div>
+                      <input
+                        type="date"
+                        value={newDate}
+                        onChange={handleDateChange}
+                      />
+                      <button onClick={() => handleSubmitUpdate(holiday.id)}>
+                        Update Date
+                      </button>
+                    </div>
+                  )}
+
+                  {/* Toggle update date editor */}
+                  <button onClick={() => handleUpdateClick(holiday.id)}>
+                    {editingHolidayId === holiday.id ? "Cancel" : "Edit Date"}
                   </button>
+
                   <button onClick={() => handleDeleteHoliday(holiday.id)}>
                     Delete
                   </button>
