@@ -7,26 +7,28 @@ import { Holiday } from "../Components/types";
 
 type loading = boolean;
 
+// Main App component
 function App() {
-  const [holidays, setHolidays] = useState<Holiday[]>([]);
-  const [isLoading, setIsLoading] = useState<loading>(false);
+  const [holidays, setHolidays] = useState<Holiday[]>([]); // Store holidays data
+  const [isLoading, setIsLoading] = useState<loading>(false); // Loading state for call to db.json
 
   useEffect(() => {
-    getHolidays();
+    getHolidays(); // Fetch holidays on component mount
   }, []);
 
-  const URL = "http://localhost:3000/holidays";
+  const URL = "http://localhost:3000/holidays"; // db.json endpoint
 
+  // Fetch holidays data from the server
   const getHolidays = async () => {
     try {
       setIsLoading(true);
       let response = await fetch(URL);
       let data = await response.json();
       console.log("data: ", data);
-      setHolidays(data);
+      setHolidays(data); // Update holidays state with the fetched data
       setIsLoading(false);
     } catch (error) {
-      console.error(error);
+      console.error(error); // Log error if the fetch fails
     }
   };
 
@@ -36,7 +38,7 @@ function App() {
     closeModal();
   };
 
-  // Handle updating a holiday
+  // Update existing holiday details
   const handleUpdateHoliday = (
     id: number,
     updatedHoliday: Partial<Holiday>
@@ -48,7 +50,7 @@ function App() {
     );
   };
 
-  // Handle deleting a holiday
+  // Delete a holiday
   const handleDeleteHoliday = (id: number) => {
     setHolidays(holidays.filter((holiday) => holiday.id !== id));
   };

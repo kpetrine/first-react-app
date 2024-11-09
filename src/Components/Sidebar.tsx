@@ -1,4 +1,4 @@
-import AddHolidayButton from "./AddHolidayButton";
+import AddHolidayButton from "./AddHolidayButton"; // Import button component
 import { Holiday } from "../Components/types";
 
 type SidebarProps = {
@@ -17,7 +17,7 @@ export default function Sidebar({ holidays, onAddHoliday }: SidebarProps) {
       countryCode: "US",
       starred: false,
     };
-
+    // Call the parent function to add the holiday
     onAddHoliday(newHoliday);
     console.log("Add holiday clicked", newHoliday);
   };

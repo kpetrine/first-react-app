@@ -14,6 +14,7 @@ interface AddHolidayFormProps {
 }
 
 export default function AddHolidayForm({ onSubmit }: AddHolidayFormProps) {
+  // Initial state for form inputs
   const initialInputs = {
     date: "",
     localName: "",
@@ -23,7 +24,7 @@ export default function AddHolidayForm({ onSubmit }: AddHolidayFormProps) {
 
   const [inputs, setInputs] = useState(initialInputs);
 
-  // Handle change of form inputs
+  // Handle change of input fields
   const handleChange = (
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {

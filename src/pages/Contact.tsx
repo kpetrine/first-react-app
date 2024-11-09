@@ -1,23 +1,19 @@
-import ContactForm from "../Components/ContactForm"
-import Layout from "../Components/Layout";
+import ContactForm from "../Components/ContactForm";
 
+
+//ContactPage component - includes both text and the form
 const ContactPage = () => {
-    return (
-      <Layout>  
-        <div className="contact-content">
-          <h1>Contact Holiday Sales</h1>
-          <p>Please email with questions or concerns.</p>
-        </div>
-      </Layout>
-    );
-  };
+  return (
+   
+      <div className="contact-content">
+        <h1>Contact Us</h1> 
+        <p>Please email with questions or concerns.</p>{" "}
+        {/* Contact instructions */}
+        <ContactForm />{" "}
+        {/* The actual form where users can submit their contact info */}
+      </div>
+  
+  );
+};
 
-export default function Contact() {
- return (
-    <>
-    <h1>Contact Us</h1>
-    <br />
-    <ContactForm />
-    </>
-)
-}
+export default ContactPage; // Export component
